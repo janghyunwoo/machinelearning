@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jang</groupId>
 	<artifactId>hadoop2</artifactId>
-	<name>ROOT1</name>
+	<name>ROOT2</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -14,8 +14,8 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		
 		<!-- ML -->
-		    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
+<!-- 		    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source> -->
 		<!-- ML end -->
 	</properties>
 	<dependencies>
@@ -37,16 +37,17 @@
 <dependency>
     <groupId>org.springframework.data</groupId>
     <artifactId>spring-data-hadoop</artifactId>
-    <version>2.2.1.RELEASE</version>
+    <!-- <version>2.2.1.RELEASE</version> -->
+     <version>2.2.1.RELEASE</version>
 </dependency>
 
-	<dependency>
+<!-- 	<dependency>
     <groupId>jdk.tools</groupId>
     <artifactId>jdk.tools</artifactId>
     <version>1.8.0_101</version>
     <scope>system</scope>
     <systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
-</dependency>
+</dependency> -->
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -150,21 +151,22 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- ml start -->
-		<dependency>
+<!--  		 <dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
-      <version>2.10</version>
-    </dependency>
-    <dependency>
+      <version>2.9.9</version>
+    </dependency>  -->
+<!--     <dependency>
      <groupId>com.google.api-client</groupId>
      <artifactId>google-api-client</artifactId>
      <version>1.23.0</version>
-    </dependency>
+    </dependency> -->
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-discovery</artifactId>
-      <version>v1-rev64-1.23.0</version>
-    </dependency>
+<!--       <version>v1-rev64-1.23.0</version> -->
+      <version>v1-rev61-1.20.0</version>
+    </dependency> 
 		<!-- ml end -->        
 	</dependencies>
     <build>
@@ -200,34 +202,34 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <!-- ml -->
-                <executions>
+                <!-- <executions>
           <execution>
             <goals>
               <goal>java</goal>
             </goals>
           </execution>
-        </executions>
+        </executions> -->
                 <!-- ml end-->
                 <configuration>
                     <mainClass>org.test.int1.Main</mainClass>
                     <!-- ml start -->
-                    <mainClass>OnlinePredictionSample</mainClass>
+                    <!-- <mainClass>OnlinePredictionSample</mainClass>
           <systemProperties>
             <systemProperty>
               <key>java.util.logging.config.file</key>
               <value>logging.properties</value>
             </systemProperty>
-          </systemProperties>
+          </systemProperties> -->
                     <!-- ml end -->
                 </configuration>
             </plugin>
         </plugins>
     </build>
     <!-- ML start -->
-      <parent>
+     <!--  <parent>
     <groupId>com.google.cloud.samples</groupId>
     <artifactId>shared-configuration</artifactId>
     <version>1.0.9</version>
-  </parent>
+  </parent> -->
     <!-- ML end -->
 </project>

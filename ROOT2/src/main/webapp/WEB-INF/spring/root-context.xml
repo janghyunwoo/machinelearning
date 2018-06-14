@@ -9,7 +9,7 @@
 	
 	<!-- HDFS 서버 정보 입력 -->
 	<hadoop:configuration id ="hdConf">
-			fs.default.name=hdfs://192.168.0.10:9000
+			fs.default.name=hdfs://192.168.0.11:9000
 	</hadoop:configuration>
 	
 	<!-- 처리할 작업 기술

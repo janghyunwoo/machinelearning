@@ -122,7 +122,7 @@ public class HomeController {
 			
 			// 하둡 서버의 정보 set
 			Configuration conf = hdConf;
-			conf.set("fs.default.name", "hdfs://192.168.0.10:9000");
+			conf.set("fs.default.name", "hdfs://192.168.0.11:9000");
 			
 			// 아래 주석은 yarn, mapreduce 할 때 필요한듯??
 			// conf.set("hadoop.job.user", "hadoop");
@@ -143,8 +143,8 @@ public class HomeController {
 			 * -s : 추천 알고리즘
 			 * */
 			String[] str = { 
-					"-i", "hdfs://192.168.0.10:9000/userrating.csv",
-					"-o", "hdfs://192.168.0.10:9000/mahoutresult",
+					"-i", "hdfs://192.168.0.11:9000/userrating.csv",
+					"-o", "hdfs://192.168.0.11:9000/mahoutresult",
 					// "-n","3",
 					// "-b","false",
 
@@ -203,58 +203,50 @@ public class HomeController {
 		
 		//ML Test
 		@RequestMapping(value = "/mltest", method = RequestMethod.GET)
-		public String home2(Locale locale, Model model) {
-			try {
-				logger.info("환경변수:"+System.getenv("GOOGLE_APPLICATION_CREDENTIALS"));
-				
-				HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-				JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-				Discovery discovery = new Discovery.Builder(httpTransport, jsonFactory, null).build();
-				
-				RestDescription api = discovery.apis().getRest("ml", "v1").execute();
-				RestMethod method = api.getResources().get("projects").getMethods().get("predict");
-				
-				JsonSchema param = new JsonSchema();
-				String projectId = "hypnotic-maker-206205";
-				// You should have already deployed a model and a version.
-				// For reference, see https://cloud.google.com/ml-engine/docs/deploying-models.
-				String modelId = "census";
-				String versionId = "YOUR_VERSION_ID";
-				param.set(
-//		        "name", String.format("projects/%s/models/%s/versions/%s", projectId, modelId, versionId));
-						"name", String.format("projects/%s/models/%s", projectId, modelId));
-				
-				GenericUrl url =
-						new GenericUrl(UriTemplate.expand(api.getBaseUrl() + method.getPath(), param, true));
-				logger.info(url+"");
-				
-				String contentType = "application/json";
-				
-				File requestBodyFile = ResourceUtils.getFile(this.getClass().getResource("/input.txt"));
-				HttpContent content = new FileContent(contentType, requestBodyFile);
-				logger.info(content.getLength()+"");
-				logger.info(requestBodyFile.getAbsolutePath());
-				
-				GoogleCredential credential = GoogleCredential.getApplicationDefault();
-				logger.info("환경:"+credential);
-//		    GoogleCredential credential = GoogleCredential.getApplicationDefault(httpTransport, jsonFactory);
-				HttpRequestFactory requestFactory = httpTransport.createRequestFactory(credential);
-				HttpRequest request = requestFactory.buildRequest(method.getHttpMethod(), url, content);
-				
-				String response = request.execute().parseAsString();
-				logger.info(response);
-				
-				
-				// 웹 페이지 출력
+		public String home2(Locale locale, Model model) throws Exception{
+			System.out.println("sysout 시작");  
+			logger.info("logger시작");
+			logger.info("환경변수:"+System.getenv("GOOGLE_APPLICATION_CREDENTIALS"));
+			   
+			  HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+			    JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+			    Discovery discovery = new Discovery.Builder(httpTransport, jsonFactory, null).build();
+
+			    RestDescription api = discovery.apis().getRest("ml", "v1").execute();
+			    RestMethod method = api.getResources().get("projects").getMethods().get("predict");
+
+			    JsonSchema param = new JsonSchema();
+			    String projectId = "hypnotic-maker-206205";
+			    // You should have already deployed a model and a version.
+			    // For reference, see https://cloud.google.com/ml-engine/docs/deploying-models.
+			    String modelId = "census";
+			    String versionId = "YOUR_VERSION_ID";
+			    param.set(
+//			        "name", String.format("projects/%s/models/%s/versions/%s", projectId, modelId, versionId));
+			    	  "name", String.format("projects/%s/models/%s", projectId, modelId));
+
+			    GenericUrl url =
+			        new GenericUrl(UriTemplate.expand(api.getBaseUrl() + method.getPath(), param, true));
+			    logger.info(url+"");
+
+			    String contentType = "application/json";
+			    File requestBodyFile = new File("/home/jang/Downloads/input.txt");
+			    HttpContent content = new FileContent(contentType, requestBodyFile);
+			    logger.info(content.getLength()+"");
+
+			    
+			    GoogleCredential credential = GoogleCredential.getApplicationDefault();
+			    logger.info(credential+"");
+//			    GoogleCredential credential = GoogleCredential.getApplicationDefault(httpTransport, jsonFactory);
+			    HttpRequestFactory requestFactory = httpTransport.createRequestFactory(credential);
+			    logger.info(requestFactory+"");
+			    HttpRequest request = requestFactory.buildRequest(method.getHttpMethod(), url, content);
+			    logger.info(request+"");
+
+			    String response = request.execute().parseAsString();
+			    logger.info(response+"");
+			 // 웹 페이지 출력
 				model.addAttribute("serverTime", response);
-				
-				
-				logger.info("끝", response);
-				
-			}catch (Exception e) {
-				logger.info("애러", e);
-				// TODO: handle exception
-			}
 			return "home";
 		}
 		
