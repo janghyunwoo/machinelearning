@@ -3,6 +3,8 @@ package com.jang.hadoop2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.Locale;
 
@@ -13,6 +15,8 @@ import org.apache.hadoop.fs.Path;
 //import org.apache.mahout.cf.taste.hadoop.item.RecommenderJob;
 import org.apache.mahout.cf.taste.impl.common.LongPrimitiveIterator;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
+import org.apache.mahout.cf.taste.impl.model.jdbc.ConnectionPoolDataSource;
+import org.apache.mahout.cf.taste.impl.model.jdbc.MySQLJDBCDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericItemBasedRecommender;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
@@ -50,6 +54,10 @@ import com.google.api.services.discovery.Discovery;
 import com.google.api.services.discovery.model.JsonSchema;
 import com.google.api.services.discovery.model.RestDescription;
 import com.google.api.services.discovery.model.RestMethod;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
+
 import java.io.File;
 
 /**
@@ -266,8 +274,20 @@ public class HomeController {
 //		try {
 			logger.info("User Based 들어옴!");
 			
+			File CSVFile = new File("/var/lib/mysql-files/output1.csv");
+			if(!CSVFile.exists()) {
+			 DBase db = new DBase();
+		     Connection conn = db.connect(
+		                "jdbc:mysql://jhwoo.hopto.org:3306/db","jang","Wkdgusdn#01");
+		     
+		    	 db.exportData(conn,"/var/lib/mysql-files/output1.csv");
+		    	 logger.info("CSV 생성 완료");
+		     }
+		     
+			
 			// Creating data model
-			DataModel datamodel = new FileDataModel(ResourceUtils.getFile(this.getClass().getResource("/u1.csv"))); // data
+//			DataModel datamodel = new FileDataModel(ResourceUtils.getFile(this.getClass().getResource("/u1.csv"))); // data
+			DataModel datamodel = new FileDataModel(CSVFile); // data
 			logger.info("1."+datamodel);
 			// Creating UserSimilarity object.
 			// ItemSimilarity usersimilarity = new LogLikelihoodSimilarity(datamodel);
@@ -312,10 +332,31 @@ public class HomeController {
 	public String home4(Locale locale, Model model) throws Exception {
 		logger.info("Item Based 들어옴!");
 		
+		MysqlConnectionPoolDataSource dataSource = new MysqlConnectionPoolDataSource();
+//		dataSource.setServerName("jhwoo.hopto.org");
+		dataSource.setServerName("192.168.0.11");
+		dataSource.setDatabaseName("db");
+		dataSource.setUser("jang");
+		dataSource.setPassword("Wkdgusdn#01");
+		dataSource.setCachePreparedStatements(true);
+		dataSource.setCachePrepStmts(true);
+		dataSource.setCacheResultSetMetadata(true);
+		dataSource.setAlwaysSendSetIsolation(false);
+		dataSource.setElideSetAutoCommits(true);
+		/*
+		 * MysqlDataSource dataSource = new MysqlDataSource();
+		 * dataSource.setServerName("jhwoo.hopto.org"); dataSource.setUser("jang");
+		 * dataSource.setPassword("Wkdgusdn#01"); dataSource.setDatabaseName("db");
+		 */
+		// ConnectionPoolDataSource aa = new ConnectionPoolDataSource(dataSource);
+		JDBCDataModel model1 = new MySQLJDBCDataModel(new ConnectionPoolDataSource(dataSource), "rating", "userid",
+				"movieid", "rating", null);
+		
+		
 //		try {
 		// BasicConfigurator.configure();
 //		DataModel model1 = new FileDataModel(new File("/home/jang/hadoop/hadoop-3.1.0/u1.csv"));
-		DataModel model1 = new FileDataModel(ResourceUtils.getFile(this.getClass().getResource("/u1.csv")));
+//		DataModel model1 = new FileDataModel(ResourceUtils.getFile(this.getClass().getResource("/u1.csv")));
 		logger.info("1."+model1);
 		// CooccurrenceCountSimilarity aa =new CooccurrenceCountSimilarity();
 
@@ -327,6 +368,7 @@ public class HomeController {
 		// getItemIDs 나 getUserIDs는 단지 유저나 아이템의 id 값을 가져오는 것에 불과
 		// 연산하는데 영향을 미치지 않는다.
 		int x = 1;
+		String response="";
 		for (LongPrimitiveIterator items = model1.getItemIDs(); items.hasNext();) {
 			long itemID = items.nextLong();
 
@@ -336,19 +378,60 @@ public class HomeController {
 			List<RecommendedItem> recommendations = recommender.mostSimilarItems(itemID, 10);
 			logger.info("4."+recommendations);
 			for (RecommendedItem recommendation : recommendations) {
+				response+=itemID + " 비슷영화id:" + recommendation.getItemID() + " 연관점수 " + recommendation.getValue() + "<br>";
 				logger.info(
 						itemID + " 비슷영화id:" + recommendation.getItemID() + " 연관점수 " + recommendation.getValue() + "");
 			}
 
-			if (++x > 5)
+			if (++x > 1)
 				break;
 		}
-
+		model.addAttribute("serverTime", response);
 //		} catch (Exception e) {
 //			logger.info(e+"");
 //		}
 		
 		return "home";
 	}
+	
+	
 
+}
+
+class DBase {
+    public DBase() {
+    }
+     
+    public Connection connect(String db_connect_str, 
+            String db_userid, String db_password) {
+        Connection conn;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = (Connection) DriverManager.getConnection(db_connect_str,
+                    db_userid, db_password);
+             
+        } catch(Exception e) {
+            e.printStackTrace();
+            conn = null;
+        }
+        return conn;
+    }
+     
+    public void exportData(Connection conn,String filename) {
+        Statement stmt;
+        String query;
+        try {
+            stmt = (Statement) conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+             
+            //For comma separated file
+            query = "SELECT userid,movieid,rating into OUTFILE '"+filename+
+                    "' FIELDS TERMINATED BY ',' FROM rating";
+            stmt.executeQuery(query);
+             
+        } catch(Exception e) {
+            e.printStackTrace();
+            stmt = null;
+        }
+    }
 }
