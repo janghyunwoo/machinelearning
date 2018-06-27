@@ -4,7 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-
+	<head>
+		<style type="text/css">
+			.bootimg{
+			width:60%;
+			height:auto;
+			}
+		</style>
+	</head>
 
     <!-- Page Content -->
     <div class="container">
@@ -17,10 +24,10 @@
       <c:forEach var="d" items="${MovieContent }">
         <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
           <div class="card h-100" >
-            <a href="#"><img class="card-img-top" src="${d.img}" alt=""></a>
+            <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg${d.movieid }"><img class="card-img-top" src="${d.img}" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#" data-toggle="modal" data-target="#exampleModal${d.movieid }">${d.title }</a>
+                <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg${d.movieid }">${d.title }</a>
               </h4>
               <p class="card-text"><fmt:formatDate value="${d.releaseday }" dateStyle="long" /> ${d.genreid }</p>
             </div>
@@ -57,28 +64,82 @@
 
     </div>
     <!-- /.container -->
-
+    
+    
 <c:forEach var="d" items="${MovieContent }">
-	<div class="modal fade" id="exampleModal${d.movieid }" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+<div class="modal fade bd-example-modal-lg${d.movieid }" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title h4" id="myLargeModalLabel"> 자세히 보기 </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+					<table class="table table-borderless">
+
+						<tbody>
+							<tr>
+								<th rowspan="3" style="width: 50%"><img
+									class="rounded mx-auto d-block bootimg" src="${d.img}" alt=""></th>
+								<th style="width: 10%">제목</th>
+								<th style="width: 40%">${d.title }</th>
+							</tr>
+							<tr>
+								<td>출시</td>
+								<td><fmt:formatDate value="${d.releaseday }"
+										dateStyle="long" /></td>
+							</tr>
+							<tr>
+								<td>장르</td>
+								<td>${d.genreid }</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<th rowspan="2" style="width: 65%">
+									<form>
+										<div>
+											<label for="comment">◆평가하기</label>
+										</div>
+										<div> <textarea
+												class="form-control" rows="5" id="comment"></textarea>
+										</div>
+										<!-- </span> -->
+
+									</form>
+								</th>
+								<th style="width: 35%">제목</th>
+							</tr>
+							<tr>
+								<th>dasfeasf</th>
+							</tr>
+						</tbody>
+					</table>
+
+					<!-- <form >
+							<div><label for="comment">◆평가하기</label></div>
+						<span  style="width: 70%">
+							<textarea class="form-control" rows="5" id="comment"></textarea>
+						</span>
+
+					</form> -->
+
+
+
 				</div>
-				<div class="modal-body">${d.title }</div>
-				<div class="modal-footer">
+      <div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
 		</div>
-	</div>
+    </div>
+  </div>
+</div>
 </c:forEach>
 
 

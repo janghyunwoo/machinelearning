@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 // servlet-context.xml¿¡ °´Ã¼ ÇÏ³ª ¸¸µé¾îÁü
 @Service
-public class movieDAO {
+public class MovieDAO {
 
 	@Autowired
 	private SqlSession ss;

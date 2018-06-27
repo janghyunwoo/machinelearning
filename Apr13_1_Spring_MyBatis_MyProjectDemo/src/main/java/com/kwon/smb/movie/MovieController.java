@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.kwon.smb.movie.movieDAO;
+import com.kwon.smb.movie.MovieDAO;
 
 //	1. 만들기만해서 실행
 //
@@ -29,7 +29,7 @@ public class MovieController {
 	
 	// servlet-context.xml에 있는 객체 불러오기
 	@Autowired 
-	private movieDAO d;
+	private MovieDAO d;
 	
 	@RequestMapping(value = "/top100.go", method = RequestMethod.GET)
 	public String home(HttpServletRequest req, HttpServletResponse res) {

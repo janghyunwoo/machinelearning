@@ -15,7 +15,7 @@ create table rating(
 
 insert into users(id,pw,sex,birthday,isadmin) values('jang','Jang','F','2018-12-12',0);
 
-select * from users ;
+select * from rating ;
 delete from users where id='jang'; 
 
 select * from genre ;

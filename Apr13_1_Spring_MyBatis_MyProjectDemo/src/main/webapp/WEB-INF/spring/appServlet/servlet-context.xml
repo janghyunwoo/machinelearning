@@ -45,6 +45,7 @@
 			<beans:list>
 				<beans:value>classpath:moviemapper.xml</beans:value>
 				<beans:value>classpath:usermapper.xml</beans:value>
+				<beans:value>classpath:ratingmapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
