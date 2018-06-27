@@ -1,0 +1,171 @@
+@charset "EUC-KR";
+
+#snsBlankTitleTd {
+	color: #01579B;
+	font-size: 30pt;
+	font-weight: 900;
+}
+
+#snsWriteTbl {
+	position: fixed;
+	left: 50%;
+	width: 700px;
+	height: 180px;
+	margin-left: -490px;
+	margin-top: -40px;
+	border-radius: 10px;
+	border: #01579B99 solid 3px;
+	background-color: #ffffffcc;
+}
+
+#snsWriteTATd {
+	width: 650px;
+}
+
+#snsWriteTA {
+	border: #00000099 solid 2px;
+	background-color: transparent;
+	width: 94%;
+	font-weight: 800;
+	height: 90%;
+	font-size: 12pt;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#snsWriteBtn {
+	border: none;
+	background-color: transparent;
+	width: 94%;
+	color: #01579B99;
+	font-weight: 800;
+	height: 95%;
+	font-size: 13pt;
+	border-radius: 10px;
+}
+
+#snsArea {
+	margin-top: 160px;
+	width: 900px;
+}
+
+.snsLR {
+	width: 50px;
+}
+
+.snsCenter {
+	
+}
+
+.snsMsg {
+	width: 90%;
+	border: #00000099 solid 3px;
+	border-radius: 10px;
+	font-size: 10pt;
+	box-shadow: 5px 5px 5px #000000;
+	margin-bottom: 15px;
+}
+
+.snsMsg:hover {
+	border: #01579B99 solid 3px;
+	box-shadow: 5px 5px 5px #01579B;
+}
+
+.snsImgTd {
+	width: 85px;
+}
+
+.snsImg {
+	margin-top: 7px;
+	max-width: 70px;
+	border-radius: 10px;
+}
+
+.snsOwner {
+	padding-top: 7px;
+	font-size: 12pt;
+	font-weight: 900;
+	color: #01579B;
+	padding-left: 5px;
+}
+
+.snsTxt {
+	padding-left: 5px;
+}
+
+.snsBtn {
+	background-color: #00000099;
+	color: white;
+	border: none;
+	height: 25px;
+	font-weight: 800;
+	font-size: 11pt;
+	border-radius: 5px;
+	margin: 5px;
+	width: 80px;
+}
+
+.snsBtn:hover {
+	background-color: white;
+	color: #01579B;
+}
+
+.snsCmtArea {
+	padding-top: 15px; 
+	padding-left:10px;
+	font-size: 10pt;
+}
+
+.snsCmtOwner {
+	color: #01579B;
+	font-size: 10pt;
+	font-weight: 900;
+}
+.snsL, .snsR{
+	position: fixed;
+	top:550px;
+	font-size: 50pt;
+	font-weight: 900;
+	color:#01579B;
+}
+.snsL:hover, .snsR:hover{
+	color:red;
+}
+.snsL{
+	left:50%;
+	margin-left:-450px;
+}
+.snsR{
+	position: fixed;
+	left:50%;
+	margin-left:450px;
+}
+#snsSearchInput{
+	border:#000000 solid 2px;
+	font-size: 12pt;
+	height:20px;
+	padding-left: 7px; 
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
+#snsSearchBtn{
+	border:none;
+	color:#000000;
+	background-color: transparent;
+	font-weight: 900;
+	font-size: 12pt;
+	margin-bottom: 5px;
+}
+.writeReplInput{
+	border:none;
+	border-bottom:#01579B solid 2px;
+	height: 20px;
+	font-size: 10pt;
+}
+.writeReplBtn{
+	color:#01579B;
+	background-color: transparent;
+	border:none;
+	font-size: 10pt;
+	font-weight: 800;
+}

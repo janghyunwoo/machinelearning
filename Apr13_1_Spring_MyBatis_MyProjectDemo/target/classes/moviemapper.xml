@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kwon.smb.movie.MovieMapper">
+
+
+	<select id="getMovies" 
+		resultType="com.kwon.smb.movie.Movie">
+		select * from movies where movieid between 1 and 10
+	</select>
+	<select id="getGenre" 
+		resultType="com.kwon.smb.movie.Genre">
+		select * from genre
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

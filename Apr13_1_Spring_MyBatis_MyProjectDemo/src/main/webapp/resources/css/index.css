@@ -1,0 +1,62 @@
+@charset "EUC-KR";
+a{
+	text-decoration: none;
+}
+body{
+	margin: 0px;
+	padding: 0px;
+}
+table{
+	border-spacing: 0px;
+}
+input, button, textarea, select{
+	outline: none;
+}
+textarea{
+	resize: none;
+}
+h2{
+	color:#0277BD;
+}
+#siteTitleArea{
+	width:100%;
+	position:fixed;
+	top:0px;
+}
+#siteTitleArea2 {
+	width: 1000px;
+}
+#siteTitleTd{
+	height:70px;
+	padding-left: 15px;
+	background-color: #ffffffcc;
+}
+#siteTitle{
+	color:#0277BD;
+	font-size: 20pt;
+	font-weight: 900;	
+}
+#siteMenuArea{
+	background-color:#0277BD99;
+	height: 40px;
+	border-radius:10px;
+	box-shadow: 5px 5px 5px #01579B99;
+}
+.siteMenu{
+	color:white;
+	font-size: 13pt;
+	font-weight: 700;
+	margin-left: 20px; 
+	margin-right: 20px;
+}
+.siteMenu:hover{
+	color:red;
+}
+#siteContentArea{
+	width:100%;
+	margin-top:170px; 
+}
+
+#siteContentArea2{
+	width: 1000px;
+}

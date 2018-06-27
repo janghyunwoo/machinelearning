@@ -1,0 +1,110 @@
+@charset "EUC-KR";
+#loginTbl{
+	margin-top:15px;
+	border-radius:10px;
+	background-color: #01579B99;
+	width:250px;
+	color:white;
+	font-weight: 800;
+	height: 170px;
+	box-shadow: 5px 5px 5px #0277BD99;
+}
+.loginTd1{
+	width: 50px;
+}
+.loginInput{
+	border:none;
+	border-bottom: white solid 2px;
+	background-color: transparent;
+	width:90%;
+	color:white;
+}
+.loginBtn{
+	background-color: #01579B;
+	border:white solid 2px;
+	border-radius:5px;
+	color:white;
+	font-weight: 800;
+	width:40%;
+	height:30px;
+}
+.loginBtn:hover, .loginOKBtn:hover{
+	background-color: #0277BD;
+}
+
+#joinTbl{
+	background-color: #01579B; 
+	color:white;
+	width: 480px;
+	font-size: 15pt;
+	font-weight: 800;
+}
+.joinTblTd1{
+	padding-left: 15px;
+	height: 40px;
+	width: 100px;
+}
+.joinInput{
+	width: 90%;
+	height: 35px;
+	font-size: 14pt;
+	padding-left: 5px;
+}
+.joinTblBlank{
+	height: 10px; 
+}
+.joinSelect{
+	height: 35px;
+	font-size: 14pt;
+	width:70px;
+}
+#joinBtn{
+	width: 90%;
+	background-color: transparent;
+	color:white;
+	border:none;
+	font-size: 15pt;
+	font-weight: 800;
+}
+#loginOKTbl{
+	margin-top:15px;
+	border-radius:10px;
+	background-color: #01579B99;
+	width:250px;
+	height: 150px;
+	box-shadow: 5px 5px 5px #0277BD99 ;
+}
+.loginOKImg{
+	margin-top:5px;
+	max-width: 70px;
+	border-radius:10px;
+}
+#loginOKImgTd{
+	width: 85px;
+}
+#loginOKID{
+	padding-top:5px;
+	font-size: 14pt;
+	font-weight: 900;
+	color:white;
+}
+#loginOKName{
+	padding-bottom:5px;
+	font-size: 13pt;
+	font-weight: 700;
+	color:black;
+	text-shadow: 0px 0px 10px white;
+}
+.loginOKBtn{
+	border:white solid 2px;
+	border-radius:5px;
+	background-color: #01579B;
+	color:white;
+	font-weight: 800;
+	height: 30px;
+}
+
+#loginOKHello{
+	font-size: 10pt;
+	font-weight: 500;
+}

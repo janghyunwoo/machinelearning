@@ -1,0 +1,63 @@
+@charset "EUC-KR";
+#msgTbl {
+	position: fixed;
+	left: 50%;
+	width: 700px;
+	height:500px;
+	margin-left: -490px;
+	margin-top: -40px;
+	border-radius: 10px;
+	border: #A1887F solid 5px;
+	background-color: #1B5E20;
+	box-shadow: 7px 7px 5px black;
+}
+
+#memberArea{
+	margin-top: 140px;
+	margin-left:75.5%;
+	width: 250px;
+}
+.memberTable{
+	float: left;
+	border:#01579B99 outset 7px;
+	width: 220px;
+	margin: 12px;
+	font-weight: 800;
+	font-size: 10pt;
+}
+.memberTable:hover{
+	border:#01579B99 inset 7px;
+	
+}
+.memberImgTd{
+	width: 60px; 
+	background-color: #01579B99;
+}
+.memberImg{
+	max-width: 55px;
+	border-radius:7px;
+}
+.memberIDTd{
+	background-color: #01579B99;
+	color:white;
+	font-weight: 900;
+}
+.msg{
+	float:left;
+	background-color: #FFF176;
+	box-shadow: 5px 5px 5px #9E9E9E;
+	margin:10px;
+	width:150px;
+	padding:10px;
+	font-size: 10pt;
+}
+.msg:hover{
+	box-shadow: 5px 5px 5px red;
+}
+.msgFrom{
+	border-bottom: black solid 2px;
+	font-weight: 900;
+}
+.msgDate{
+	font-size: 9pt;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kwon.smb.user.UserMapper">
+
+	<select id="getUserById" 
+		parameterType="com.kwon.smb.user.User"
+		resultType="com.kwon.smb.user.User">
+		select * from users where id=#{id}
+	</select>
+	<insert id="join" parameterType="com.kwon.smb.user.User">
+		insert into users(id,pw,sex,birthday,isadmin) values(#{id}, #{pw}, #{sex}, #{birthday},0)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
