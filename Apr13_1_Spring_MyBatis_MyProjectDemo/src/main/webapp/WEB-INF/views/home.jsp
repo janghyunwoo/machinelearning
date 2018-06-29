@@ -27,6 +27,22 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 	<link rel="shortcut icon" type="image⁄x-icon" href="resources/img/movie.png">
 
+<style>
+
+/*  body{
+
+  font-family: "Helvetica Nene", Helvetica, Arial, 맑은 고딕;,"malgun gothic", sans-serif;
+
+ } */
+
+ </style>
+
+<script type="text/javascript">
+/* function aaa() {
+	alert(":::ss");
+} */
+
+</script>
   </head>
 
   <body>
@@ -68,19 +84,19 @@
 							</form>
 						</div>
 					</div> -->
-				<div class="input-group col-sm-3">
+				<div class="input-group col-sm-3" >
 					<input type="text" class="form-control" placeholder="Search" name="q">
 				</div>
 			</div>
 		</div>
 	</nav>
-
+<%-- <button onclick="aaa()">${ContentPage} ss</button>ssdfsdfasfasfsdj --%>
 	<!-- Page Content -->
     <div class="container">
 		<jsp:include page="${ContentPage}"></jsp:include>
     </div>
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark" >
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
       </div>

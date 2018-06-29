@@ -4,8 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kwon.smb.rating.RatingMapper">
-
+<insert id="registerRating" parameterType="com.kwon.smb.rating.Rating">
+		insert into rating values(#{userid}, #{movieid}, #{rating}, #{comment})
+	</insert>
 	
+	<select id="getComment" 
+		parameterType="com.kwon.smb.rating.Rating"
+		resultType="com.kwon.smb.rating.Comment">
+		select users.id,rating,comment from rating,users where rating.userid=users.userid and movieid=#{movieid}
+	</select>
 </mapper>
 
 

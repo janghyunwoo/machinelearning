@@ -33,8 +33,11 @@ public class MovieController {
 	
 	@RequestMapping(value = "/top100.go", method = RequestMethod.GET)
 	public String home(HttpServletRequest req, HttpServletResponse res) {
+		
 		d.getTop100Movies(req, res);
-		req.getSession().setAttribute("ContentPage", "top100.jsp");
+		req.setAttribute("ContentPage", "top100.jsp");
+		
+		
 		
 		return "home";
 	}
