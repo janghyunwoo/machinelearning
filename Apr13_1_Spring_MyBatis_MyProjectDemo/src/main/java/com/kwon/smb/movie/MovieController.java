@@ -33,11 +33,40 @@ public class MovieController {
 	
 	@RequestMapping(value = "/top100.go", method = RequestMethod.GET)
 	public String home(HttpServletRequest req, HttpServletResponse res) {
+		int page;
+		
+		if(req.getParameter("selectNum")==null){
+			page = 1;
+		}else{
+			page = Integer.parseInt(req.getParameter("selectNum"));
+		}
 		
 		d.getTop100Movies(req, res);
+		d.paging(page,req, res);
+		
 		req.setAttribute("ContentPage", "top100.jsp");
 		
+		return "home";
+	}
+	
+	//º¸·ù
+	@RequestMapping(value = "/searcheMovie.do", method = RequestMethod.GET)
+	public String searchMovieGo(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println("serchMovie.do µé¾î¿È");
+		System.out.println(req.getParameter("searcheMovie"));
 		
+		int page;
+		
+		if(req.getParameter("selectNum")==null){
+			page = 1;
+		}else{
+			page = Integer.parseInt(req.getParameter("selectNum"));
+		}
+		
+		d.searchMovie(req, res);
+		d.paging(page,req, res);
+		
+		req.setAttribute("ContentPage", "top100.jsp");
 		
 		return "home";
 	}

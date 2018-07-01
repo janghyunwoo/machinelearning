@@ -17,18 +17,20 @@ public class Movie {
 	private Date releaseday;
 	private String genreid;
 	private String img;
+	private BigDecimal avgrating;
 
 	public Movie() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Movie(BigDecimal movieid, String title, Date releaseday, String genreid, String img) {
+	public Movie(BigDecimal movieid, String title, Date releaseday, String genreid, String img, BigDecimal avgrating) {
 		super();
 		this.movieid = movieid;
 		this.title = title;
 		this.releaseday = releaseday;
 		this.genreid = genreid;
 		this.img = img;
+		this.avgrating = avgrating;
 	}
 
 	public BigDecimal getMovieid() {
@@ -71,5 +73,11 @@ public class Movie {
 		this.img = img;
 	}
 
+	public BigDecimal getAvgrating() {
+		return avgrating;
+	}
 
+	public void setAvgrating(BigDecimal avgrating) {
+		this.avgrating = avgrating;
+	}
 }

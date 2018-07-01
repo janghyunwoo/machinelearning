@@ -7,7 +7,10 @@
 
 	<select id="getMovies" 
 		resultType="com.kwon.smb.movie.Movie">
-		select * from movies where movieid between 1 and 10
+		<!-- select * from movies where movieid between 1 and 10 -->
+
+select movies.movieid,movies.title,movies.releaseday,movies.genreid,movies.img,ROUND(SUM(rating.rating)/COUNT(rating.rating),2) AS "avgrating"
+from movies,rating where movies.movieid = rating.movieid group by rating.movieid having COUNT(rating.rating)&gt;100 order by avgrating DESC limit 200;
 	</select>
 	<select id="getGenre" 
 		resultType="com.kwon.smb.movie.Genre">

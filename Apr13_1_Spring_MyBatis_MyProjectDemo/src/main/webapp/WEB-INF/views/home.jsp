@@ -38,9 +38,11 @@
  </style>
 
 <script type="text/javascript">
-/* function aaa() {
-	alert(":::ss");
-} */
+ function searcheMovieDo() {
+	$("#searcheMovie").val();
+	location.href="searcheMovie.do?searcheMovie="+$("#searcheMovie").val();
+
+} 
 
 </script>
   </head>
@@ -85,7 +87,7 @@
 						</div>
 					</div> -->
 				<div class="input-group col-sm-3" >
-					<input type="text" class="form-control" placeholder="Search" name="q">
+					<input type="text" id="searcheMovie" class="form-control" onkeypress="if(event.keyCode==13) {searcheMovieDo(); return false;}" placeholder="Search" name="q">
 				</div>
 			</div>
 		</div>

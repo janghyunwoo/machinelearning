@@ -1,9 +1,10 @@
 package com.kwon.smb.movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface MovieMapper {
-	public abstract List<Movie> getMovies();
+	public abstract ArrayList<Movie> getMovies();
 	public abstract List<Genre> getGenre();
 	// returnÅ¸ÀÔ
 		// insert, update, delete : int

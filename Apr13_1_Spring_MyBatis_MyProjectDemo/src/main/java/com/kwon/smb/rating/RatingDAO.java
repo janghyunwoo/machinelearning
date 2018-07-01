@@ -76,8 +76,9 @@ public class RatingDAO {
 		
 	}
 	
-	public void paging(int page, HttpServletRequest request, HttpServletResponse response) {
+	public void paging( HttpServletRequest request, HttpServletResponse response) {
 		// 전체 페이지 수 계산
+		int page = Integer.parseInt(request.getParameter("selectNum"));
 		double cnt = 10; // 한 페이지당 나올 후기 수
 		int commentsSize = comments.size(); // 총 후기 수
 		int pageCount = (int) Math.ceil(commentsSize / cnt);

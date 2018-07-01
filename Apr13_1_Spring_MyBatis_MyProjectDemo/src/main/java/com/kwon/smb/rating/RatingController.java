@@ -35,7 +35,7 @@ public class RatingController {
 		System.out.println("getrating.do Á¢¼Ó");
 		res.setContentType("text/html;charset=UTF-8");
 		d.getComment(req,res);
-		d.paging(1, req, res);
+		d.paging(req, res);
 		
 		
 //		res.getWriter().println(d.registerComment(req, res));
